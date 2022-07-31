@@ -1,0 +1,36 @@
+{
+  //"javascript.suggestionActions.enabled": false,
+  //"typescript.suggestionActions.enabled": false,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnSave": true,
+  "javascript.format.enable": false,
+  "typescript.format.enable": false,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.options": {
+    "extensions": [".ts", ".js", ".tsx", ".jsx"]
+  },
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+
+  //"editor.defaultFormatter": "esbenp.prettier-vscode",
+  //"editor.formatOnSave": true,
+  "cSpell.words": [
+    "CMYK",
+    "Hwba",
+    "Jzazbz",
+    "Laba",
+    "lchab",
+    "lchuv",
+    "RGBW",
+    "tristimulus",
+    "Xyza"
+  ]
+}

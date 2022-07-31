@@ -1,0 +1,41 @@
+import { ColorBake } from "../colorBake.js";
+import { ColorRegistry, KeysOfUnion, UnionToIntersection } from "../types.js";
+
+export function handleOutOfRange<T extends keyof ColorRegistry>(
+  color: ColorRegistry[T],
+  space: T
+): ColorRegistry[T] {
+  if (inGamut(color, space)) return color;
+  return color;
+}
+
+export function inGamut<T extends keyof ColorRegistry>(
+  color: ColorRegistry[T],
+  space: T
+): boolean {
+  const spaceInfo = ColorBake.prototype.spaces[space];
+  if (!spaceInfo || typeof color === "string") return true; //?
+  const range = spaceInfo.range;
+  const colorTyped = color as UnionToIntersection<
+    Exclude<ColorRegistry[keyof ColorRegistry], string>
+  >;
+  for (const channel in color) {
+    const x: number = color[channel] ;
+    const channelTyped = channel as KeysOfUnion<
+      Exclude<ColorRegistry[keyof ColorRegistry], string>
+    >;
+    if (
+      !inRange(colorTyped[channelTyped] || 0, range[channelTyped]) || [0, 0]
+    ) {
+      return false;
+    }
+  }
+  return true;
+}
+export function inRange(channel: number, range: [number, number]): boolean {
+  return channel >= range[0] && channel <= range[1];
+}
+
+//export function clipChannels() {}
+
+//export function clipChannel() {}
